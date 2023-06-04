@@ -67,6 +67,7 @@ def main():
     if args.model != "large" and not args.non_english:
         model = model + ".en"
     audio_model = whisper.load_model(model)
+    cuda_is_ok = torch.cuda.is_available()
 
     record_timeout = args.record_timeout
     phrase_timeout = args.phrase_timeout
@@ -121,7 +122,7 @@ def main():
                     f.write(wav_data.read())
 
                 # Read the transcription.
-                result = audio_model.transcribe(temp_file, fp16=torch.cuda.is_available())
+                result = audio_model.transcribe(temp_file, fp16=cuda_is_ok, task = 'translate')
                 text = result['text'].strip()
 
                 # If we detected a pause between recordings, add a new item to our transcripion.

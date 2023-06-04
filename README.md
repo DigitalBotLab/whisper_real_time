@@ -29,6 +29,13 @@ choco install ffmpeg
 scoop install ffmpeg
 ```
 
-For more information on Whisper please see https://github.com/openai/whisper
-
 The code in this repository is public domain.
+
+# Run the real-time translation
+
+```bash
+python translate_demo.py --non_english
+```
+
+
+For more information on Whisper please see https://github.com/openai/whisper
